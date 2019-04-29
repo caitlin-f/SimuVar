@@ -1,5 +1,5 @@
-Simulate structural variants in a genome. Add SNPs, small indels, large
-deletions and translocations. Translocations may be conserved or non-conserved
+Simulate structural variants in a genome. Add a specified number of SNPs, small indels (1-100bp), large
+deletions (100-5000bp) and translocations (100-5000bp). Translocations may be conserved or non-conserved
 (accompanied by a deletion of the tail end of the translocated region of no
 greater than 50% size of the translocation).  
 
