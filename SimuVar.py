@@ -381,6 +381,8 @@ def write_vcf(file, ref, genome):
     vcf.write("##source={}\n".format(os.path.basename(__file__)))
     vcf.write("##reference={}\n".format(ref))
     vcf.write("##contig=<ID={}\n".format(genome.name))
+    vcf.write("##translocation_origin=END position relates to insertion position\n")
+    vcf.write("##translocation_insert=END position relates to original start position\n")
     vcf.write('##INFO=<ID=END,Number=1,Type=Integer,Description="End position of variant">\n')
     vcf.write('##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Type of structural variant detected">\n')
     vcf.write('##INFO=<ID=LEN,Number=1,Type=Integer,Description="Length of variant region">\n')
