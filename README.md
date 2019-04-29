@@ -9,13 +9,13 @@ python3 SimuVar.py -r ref.fa -s 100 -i 30 -d 10 -t 3 -nc True -f ref_mut.fa -v r
 
 Arguments:
 	-h, --help 		show this help message and exit  
-    -r   STR        reference fasta file (required)
-    -s   INT		number of SNPs
-    -i   INT		number of indels
-    -d   INT		number of large deletions
-    -t   INT		number of translocations
-    -nc  BOOL		add at least one non-conserved translocation True/False (default False)
-    -f   STR		name of output fasta file (required)
-    -v   STR		name of output vcf file (required)
+	-r   STR        reference fasta file (required)
+	-s   INT		number of SNPs
+	-i   INT		number of indels
+	-d   INT		number of large deletions
+	-t   INT		number of translocations
+	-nc  BOOL		add at least one non-conserved translocation True/False (default False)
+	-f   STR		name of output fasta file (required)
+	-v   STR		name of output vcf file (required)
 
 ```
