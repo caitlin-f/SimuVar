@@ -1,7 +1,7 @@
 Simulate structural variants in a genome. Add a specified number of SNPs, small indels (1-100bp), large
 deletions (100-5000bp) and translocations (100-5000bp). Indel sizes between 1-10 and 11-100 are randomly generated 
 at a ratio of 9:1. Translocations may be conserved or non-conserved (accompanied by a deletion of the tail end of 
-the translocated region of no greater than 50% size of the translocation).  
+the translocated region and no greater than 50% of the total size of the translocation).  
 
 ### Usage:
 ```
