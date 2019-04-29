@@ -15,6 +15,27 @@ Simulate structural variants in a genome. Add SNPs, small indels, large
 deletions and translocations. Translocations may be conserved or non-conserved
 (accompanied by a deletion of the tail end of the translocated region of no
 greater than 50% size of the translocation).
+Usage:
+python3 SimuVar.py
+    -r   input fasta filename        reference fasta file (required)
+    -s   int                         number of SNPs
+    -i   int                         number of indels
+    -d   int                         number of large deletions
+    -t   int                         number of translocations
+    -nc  True/False                  add at least one (default False)
+    -f   output fasta filename       name of output fasta file (required)
+    -v   output vcf filename         name of output vcf file (required)
+
+Example:
+python3 SimuVar.py \
+    -r Ecoli.fa \
+    -s 100 \
+    -i 30 \
+    -d 10 \
+    -t 3 \
+    -nc True \
+    -f ref_mut.fa \
+    -v ref_mut.vcf
 """
 
 
@@ -107,7 +128,6 @@ def parse_args():
     parser.add_argument('-f', type=str, required=True, metavar='output fasta filename', help="Output fasta filename and file path")
     parser.add_argument('-v', type=str, required=True, metavar='output vcf file of mutations', help="Output vcf filename and file path")
 
-
     return parser.parse_args()
 
 
@@ -126,7 +146,6 @@ def get_snp_pos(genome):
     if snp_pos in genome.unavail_pos:
         snp_pos = get_snp_pos(genome)
     return snp_pos
-
 
 
 # small indels
@@ -202,7 +221,6 @@ def get_del_pos(genome):
     if unavail:
         start_pos, end_pos = get_del_pos(genome)
     return (start_pos, end_pos)
-
 
 
 # translocations
@@ -314,7 +332,6 @@ def mutate_indel(genome, var):
         var.ref = genome.seq[var.start:var.end]
         var.alt = "."
 
-
 def small_insert(var):
     """ Helper function. Homopolymer string builder for small indel insertion """
     nt_options = ['A', 'T', 'G', 'C']
@@ -340,11 +357,13 @@ def mutate_deletion(genome, var):
     var.ref = genome.seq[var.start:var.end]
     var.alt = "."
 
+
 def mutate_trans_orig(genome, var):
     for i in range(var.size):
         genome.mut_seq.pop(var.start)
     var.ref = genome.seq[var.start:var.start+var.size]
     var.alt = "."
+
 
 def mutate_trans_ins(genome, var):
     insert = list(genome.seq[var.end:var.end+var.size])
@@ -373,6 +392,7 @@ def write_vcf(file, ref, genome):
 
     vcf.close()
 
+
 def main():
     args = parse_args()
 
@@ -400,15 +420,11 @@ def main():
     print("Writing output")
     new_seq = SeqRecord(genome.mut_seq)
     new_seq.id = genome.name
-    new_seq.description = "| Mutated sequence"
+    new_seq.description = "| SimuVar mutated sequence"
     SeqIO.write(new_seq, args.f, "fasta")
 
     write_vcf(args.v, args.r, genome)
 
 
-
-
-
-    # print(genome)
 if __name__ == '__main__':
     main()
