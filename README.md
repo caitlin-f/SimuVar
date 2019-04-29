@@ -8,8 +8,8 @@ greater than 50% size of the translocation).
 python3 SimuVar.py -r ref.fa -s 100 -i 30 -d 10 -t 3 -nc True -f ref_mut.fa -v ref_mut.vcf
 
 Arguments:
-	-h, --help 		show this help message and exit  
-	-r   STR        reference fasta file (required)
+	-h, --help		show this help message and exit  
+	-r   STR		reference fasta file (required)
 	-s   INT		number of SNPs
 	-i   INT		number of indels
 	-d   INT		number of large deletions
